@@ -258,8 +258,7 @@
                     </select>
                 </div>
 
-                <button type="submit" class="btn-submit" onclick="window.location.href='Camonaenhe.html';">🎉 HOÀN THÀNH ĐĂNG KÝ 🎉</button>
-                <a href="Camonaenhe.html" class="btn-submit-link" style="display: none;">🎉 HOÀN THÀNH ĐĂNG KÝ 🎉</a>
+                <button type="submit" class="btn-submit">🎉 HOÀN THÀNH ĐĂNG KÝ 🎉</button>
             </form>
 
             <div class="back-link">
@@ -297,14 +296,14 @@
             registerDate: new Date().toLocaleString('vi-VN')
         };
 
-        // 📌 DÁN URL GOOGLE SHEETS CỦA BẠN VÀO ĐÂY
+        // 📌 URL GOOGLE SHEETS
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbywl1QPkwdOp6n2_jkR8Ohoe7AdgKxf9Pk4qTgZrLeXCtdjmofgJcLdlNv1arcqh1mPhQ/exec';
 
         try {
             // Gửi lên Google Sheets
-            await fetch(SCRIPT_URL, {
+            const response = await fetch(SCRIPT_URL, {
                 method: 'POST',
-                mode: 'no-cors',
+                mode: 'cors',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(userData)
             });
@@ -328,3 +327,12 @@
             setTimeout(function() {
                 window.location.href = 'camonaenhe.html';
             }, 1500);
+            
+        } catch (error) {
+            console.error('Lỗi:', error);
+            alert('Có lỗi xảy ra: ' + error.message);
+        }
+    });
+    </script>
+</body>
+</html>

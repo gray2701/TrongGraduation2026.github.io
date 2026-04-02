@@ -274,30 +274,42 @@
     </div>
 
     <script>
-        document.getElementById('registerForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+    document.getElementById('registerForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
 
-            // Lấy giá trị gender từ radio
-            let gender = '';
-            const radios = document.getElementsByName('gender');
-            for(let i = 0; i < radios.length; i++) {
-                if(radios[i].checked) {
-                    gender = radios[i].value;
-                    break;
-                }
+        // Lấy giá trị gender từ radio
+        let gender = '';
+        const radios = document.getElementsByName('gender');
+        for(let i = 0; i < radios.length; i++) {
+            if(radios[i].checked) {
+                gender = radios[i].value;
+                break;
             }
+        }
 
-            // Tạo object lưu thông tin
-            const userData = {
-                fullname: document.getElementById('fullname').value,
-                accompany: document.getElementById('accompany').value,
-                school: document.getElementById('school').value,
-                gender: gender,
-                topic: document.getElementById('topic').value,
-                registerDate: new Date().toLocaleString('vi-VN')
-            };
+        // Tạo object lưu thông tin
+        const userData = {
+            fullname: document.getElementById('fullname').value,
+            accompany: document.getElementById('accompany').value,
+            school: document.getElementById('school').value,
+            gender: gender,
+            topic: document.getElementById('topic').value,
+            registerDate: new Date().toLocaleString('vi-VN')
+        };
 
-            // Lưu vào localStorage
+        // 📌 DÁN URL GOOGLE SHEETS CỦA BẠN VÀO ĐÂY
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbywl1QPkwdOp6n2_jkR8Ohoe7AdgKxf9Pk4qTgZrLeXCtdjmofgJcLdlNv1arcqh1mPhQ/exec';
+
+        try {
+            // Gửi lên Google Sheets
+            await fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(userData)
+            });
+
+            // Lưu vào localStorage (dự phòng)
             let allRegistrations = JSON.parse(localStorage.getItem('kyyeu_registrations') || '[]');
             allRegistrations.push(userData);
             localStorage.setItem('kyyeu_registrations', JSON.stringify(allRegistrations));
@@ -314,9 +326,5 @@
             
             // Chuyển sang trang cảm ơn sau 1.5 giây
             setTimeout(function() {
-                window.location.href = 'thankyou.html';
+                window.location.href = 'camonaenhe.html';
             }, 1500);
-        });
-    </script>
-</body>
-</html>

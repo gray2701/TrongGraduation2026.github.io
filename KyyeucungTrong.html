@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kỷ Yếu Cùng Trọng</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #440808 20%, #a53636 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff3333;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff4444, #a53636);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #ddd;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        /* Countdown Timer */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 50px 0;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            min-width: 120px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,68,68,0.3);
+        }
+
+        .countdown-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: #ff4444;
+        }
+
+        .countdown-label {
+            font-size: 14px;
+            color: #aaa;
+            margin-top: 10px;
+        }
+
+        /* Event Info Box - THÊM MỚI */
+        .event-info {
+            background: rgba(255,68,68,0.15);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 1px solid rgba(255,68,68,0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .event-info h3 {
+            color: #ff8888;
+            margin-bottom: 20px;
+            font-size: 28px;
+            text-align: center;
+        }
+
+        .event-info-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 25px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            min-width: 220px;
+        }
+
+        .info-icon {
+            font-size: 36px;
+        }
+
+        .info-text {
+            flex: 1;
+        }
+
+        .info-text strong {
+            color: #ff8888;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+
+        .info-text p {
+            color: #ddd;
+            font-size: 15px;
+        }
+
+        .map-link {
+            color: #ff8888;
+            text-decoration: none;
+            background: rgba(255,68,68,0.2);
+            padding: 8px 15px;
+            border-radius: 25px;
+            display: inline-block;
+            transition: all 0.3s;
+            margin-top: 5px;
+            font-size: 13px;
+        }
+
+        .map-link:hover {
+            background: #ff4444;
+            color: white;
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(255,68,68,0.2);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255,68,68,0.2);
+            border-color: #ff4444;
+        }
+
+        .feature-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #ff6666;
+        }
+
+        .feature-card p {
+            color: #bbb;
+            line-height: 1.6;
+        }
+
+        /* CTA Button */
+        .cta-section {
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .btn-join {
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            padding: 20px 60px;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(255,68,68,0.4);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-join:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(255,68,68,0.6);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 60px;
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 36px; }
+            .hero p { font-size: 16px; }
+            .countdown-item { min-width: 80px; padding: 15px; }
+            .countdown-number { font-size: 28px; }
+            .btn-join { font-size: 20px; padding: 15px 40px; }
+            .event-info-grid { flex-direction: column; align-items: center; }
+            .info-item { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">✨ KỶ YẾU 9/4 SỐ 1 BẮC LÝ ✨</div>
+    </div>
+
+    <div class="container">
+        <div class="hero">
+            <h1>Chụp Ảnh Kỷ Yếu<br>Cùng Trọng Đẹp Trai</h1>
+            <p>Khoảnh khắc thanh xuân rực rỡ nhất sẽ được lưu giữ mãi mãi. Hãy cùng Trọng tạo nên những bức ảnh đẹp nhất cho mùa kỷ yếu này!</p>
+        </div>
+
+        <!-- Countdown Timer -->
+        <div class="countdown">
+            <div class="countdown-item">
+                <div class="countdown-number" id="days">00</div>
+                <div class="countdown-label">Ngày</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="hours">00</div>
+                <div class="countdown-label">Giờ</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="minutes">00</div>
+                <div class="countdown-label">Phút</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="seconds">00</div>
+                <div class="countdown-label">Giây</div>
+            </div>
+        </div>
+
+        <!-- THÔNG TIN ĐỊA ĐIỂM, NGÀY, GIỜ CHỤP (THÊM MỚI) -->
+        <div class="event-info">
+            <h3>📅 THÔNG TIN CHỤP ẢNH</h3>
+            <div class="event-info-grid">
+                <div class="info-item">
+                    <div class="info-icon">📆</div>
+                    <div class="info-text">
+                        <strong>Ngày chụp</strong>
+                        <p>Thứ 7, ngày 4 tháng 4 năm 2026</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">⏰</div>
+                    <div class="info-text">
+                        <strong>Thời gian</strong>
+                        <p>09:30 - 16:00</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-text">
+                        <strong>Địa điểm</strong>
+                        <p>Trường THPT số 1 Bắc Lý<br>Số 81, đường Phan Đình Phùng, TP. Đồng Hới</p>
+                        <a href="https://maps.app.goo.gl/K9dTA93oQLN8SsEk9" target="_blank" class="map-link">
+                            🗺️ Địa điểm chi tiết
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <button class="btn-join" onclick="window.location.href='Dangkyds.html'">
+                🎬 THAM GIA NGAY 🎬
+            </button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2026 Kỷ Yếu Cùng Trọng - Lưu giữ khoảnh khắc đẹp nhất</p>
+    </div>
+
+    <script>
+        // Ngày chụp: 9 tháng 4 năm 2026
+        const targetDate = new Date('April 4, 2026 09:30:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                document.getElementById('days').innerHTML = '00';
+                document.getElementById('hours').innerHTML = '00';
+                document.getElementById('minutes').innerHTML = '00';
+                document.getElementById('seconds').innerHTML = '00';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>

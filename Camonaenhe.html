@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cảm Ơn - Kỷ Yếu Cùng Trọng</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #440808 20%, #a53636 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #fff;
+        }
+
+        /* Dòng chạy phía trên cùng */
+        .marquee-top {
+            width: 100%;
+            background: linear-gradient(90deg, #8B0000, #cc0000, #8B0000);
+            color: #ffd700;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .marquee-top marquee {
+            color: #ffd700;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 80px auto 40px;
+            width: 100%;
+            padding: 0 20px;
+            flex: 1;
+        }
+
+        .thankyou-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 40px;
+            padding: 60px 40px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,68,68,0.3);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .check-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: bounce 0.8s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        h1 {
+            font-size: 48px;
+            background: linear-gradient(135deg, #ff4444, #ff8888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            font-size: 20px;
+            color: #ddd;
+            margin-bottom: 30px;
+        }
+
+        .info-box {
+            background: rgba(255,68,68,0.1);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 30px 0;
+            text-align: left;
+            border-left: 4px solid #ff4444;
+        }
+
+        .info-box p {
+            margin: 10px 0;
+            color: #ffcccc;
+        }
+
+        .info-box strong {
+            color: #ff8888;
+        }
+
+        .next-steps {
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .next-steps h3 {
+            color: #ff8888;
+            margin-bottom: 15px;
+        }
+
+        .next-steps ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .next-steps li {
+            margin: 12px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .next-steps li:before {
+            content: "📸";
+            position: absolute;
+            left: 0;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .btn-home, .btn-view {
+            padding: 14px 35px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-home {
+            background: transparent;
+            border: 2px solid #ff4444;
+            color: #ff4444;
+        }
+
+        .btn-home:hover {
+            background: #ff4444;
+            color: white;
+        }
+
+        .btn-view {
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            border: none;
+            color: white;
+        }
+
+        .btn-view:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,68,68,0.4);
+        }
+
+        /* Footer bản quyền dưới cùng */
+        .footer {
+            text-align: center;
+            padding: 15px;
+            color: #ffcccc;
+            font-size: 11px;
+            font-family: 'Segoe UI', serif;
+            width: 100%;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.3);
+            margin-top: auto;
+        }
+
+        .footer a {
+            color: #ff8888;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .thankyou-card { padding: 40px 20px; }
+            h1 { font-size: 32px; }
+            .message { font-size: 16px; }
+            .container { margin-top: 70px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Dòng chạy phía trên cùng -->
+    <div class="marquee-top">
+        <marquee behavior="scroll" direction="left" scrollamount="4">
+            💌 Ai muốn tạo web lời mời kỷ yếu ib Trọng nhé - 50k/người 💌
+        </marquee>
+    </div>
+
+    <div class="container">
+        <div class="thankyou-card">
+            <div class="check-icon">✅🎉</div>
+            <h1>ĐĂNG KÝ THÀNH CÔNG!</h1>
+            <div class="message">
+                Cảm ơn bạn đã đăng ký tham gia chụp ảnh kỷ yếu cùng Trọng!
+            </div>
+
+            <div class="info-box" id="userInfo">
+                <!-- Sẽ hiển thị thông tin từ JavaScript -->
+            </div>
+
+            <div class="next-steps">
+                <h3>📋 Các bước tiếp theo:</h3>
+                <ul>
+                    <li>Trọng sẽ liên hệ xác nhận lịch chụp trong vòng 24h</li>
+                    <li>Chuẩn bị trang phục đẹp nhất bạn có</li>
+                    <li>Đến địa điểm đúng giờ để có những bức ảnh đẹp nhất</li>
+                    <li>Không cần quà cáp đâu, đến là được</li>
+                </ul>
+            </div>
+
+            <div class="btn-group">
+                <a href="KyyeucungTrong.html" class="btn-home">🏠 Về trang chủ</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer bản quyền dưới cùng -->
+    <div class="footer">
+        <p>© 2026 Đình Trọng - Bản quyền thuộc về Trọng. Mọi hành vi sao chép đều bị nghiêm cấm.</p>
+    </div>
+
+    <script>
+        // Lấy thông tin người vừa đăng ký
+        const lastReg = JSON.parse(localStorage.getItem('last_registration'));
+        
+        if (lastReg) {
+            const infoBox = document.getElementById('userInfo');
+            infoBox.innerHTML = `
+                <p>📌 <strong>Thông tin đăng ký của bạn:</strong></p>
+                <p>👤 Họ tên: ${lastReg.fullname}</p>
+                <p>😭 Đi cùng: ${lastReg.accompany}</p>
+                <p>🏫 Trường: ${lastReg.school}</p>
+                <p>👕 Giới tính: ${lastReg.gender || 'Chưa chọn'}</p>
+                <p>🍕 Chủ đề chụp: ${lastReg.topic}</p>
+                <p>📅 Thời gian đăng ký: ${lastReg.registerDate}</p>
+                <p style="margin-top: 15px; color: #ff8888;">❤️ Cảm ơn bạn! Trọng rất vui khi được chụp cùng bạn ❤️</p>
+            `;
+        } else {
+            document.getElementById('userInfo').innerHTML = '<p>📌 Cảm ơn bạn đã đăng ký! Trọng sẽ liên hệ lại sớm.</p>';
+        }
+
+        // In ra console để Trọng xem danh sách
+        console.log('=== DANH SÁCH ĐĂNG KÝ (CSDL CỦA TRỌNG) ===');
+        const allRegs = JSON.parse(localStorage.getItem('kyyeu_registrations') || '[]');
+        console.table(allRegs);
+        console.log(`Tổng số người đăng ký: ${allRegs.length}`);
+    </script>
+</body>
+</html>
